@@ -4,15 +4,18 @@ print("**********************************")
 
 secret_number = 42
 attempts_total = 3
-round_attempts = 1
 
-while(round_attempts <= attempts_total):
-    print("Tentativa ", round_attempts, " de ", attempts_total )
-    kick_str = input("Digite o seu número: ")
+for round_attempts  in range(1, attempts_total + 1):
+    print("Tentativa {} de {}".format(round_attempts, attempts_total))
+    kick_str = input("Digite um número entre 1 e 100: ")
 
     print("Você digitou ", kick_str)
 
     kick = int(kick_str)
+
+    if(kick < 1 or kick > 100 ):
+        print("Você deve digitar um número entre 1 e 100!")
+        continue
 
     hit = kick == secret_number 
     its_bigger = kick > secret_number
@@ -20,11 +23,11 @@ while(round_attempts <= attempts_total):
 
     if(hit):
         print("Você advinhou o número secreto")
+        break
     else:
         if(its_bigger):
             print("Você errou! O número que você digitou é maior que o número secreto.")
         elif(its_smaller):
             print("Você errou! O número que você digitou é menor que o número secreto.")
-
-    round_attempts = round_attempts + 1
+    
 print("Fim do jogo")
